@@ -1,0 +1,425 @@
+!DOCTYPE html>  <html lang="id">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Bulus King Coin ($BKCO)</title>  
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Luckiest+Guy&display=swap" rel="stylesheet">  <style>  
+    /* --- 1. SETUP DASAR --- */  
+    * {  
+        box-sizing: border-box;  
+        margin: 0;  
+        padding: 0;  
+    }  
+
+    body {  
+        font-family: 'Inter', sans-serif;  
+        background-color: #050505;   
+        color: white;  
+        line-height: 1.5;  
+        overflow-x: hidden;  
+    }  
+
+    .mobile-container {  
+        max-width: 450px;  
+        margin: 0 auto;  
+        border-left: 1px solid #1f2937;  
+        border-right: 1px solid #1f2937;  
+        min-height: 100vh;  
+        position: relative;  
+        background-color: #050505;  
+    }  
+
+    /* --- 2. FONTS & WARNA --- */  
+    h1, h2, h3, .meme-font {  
+        font-family: 'Luckiest Guy', cursive;  
+        letter-spacing: 1px;  
+    }  
+
+    .text-gradient {  
+        background: linear-gradient(to right, #fbbf24, #f59e0b);  
+        -webkit-background-clip: text;  
+        -webkit-text-fill-color: transparent;  
+    }  
+
+    .text-yellow { color: #fbbf24; }  
+    .text-purple { color: #c084fc; }  
+    .text-green { color: #4ade80; }  
+    .text-blue { color: #60a5fa; }  
+    .text-red { color: #f87171; }  
+    .text-gray { color: #9ca3af; }  
+
+    .glass-panel {  
+        background: rgba(20, 20, 30, 0.7);  
+        backdrop-filter: blur(10px);  
+        border: 1px solid rgba(255, 255, 255, 0.1);  
+        border-radius: 16px;  
+    }  
+
+    /* --- 3. KOMPONEN --- */  
+    .navbar {  
+        display: flex;  
+        justify-content: space-between;  
+        align-items: center;  
+        padding: 20px;  
+        position: sticky;  
+        top: 0;  
+        z-index: 100;  
+        background-color: rgba(5, 5, 5, 0.95);  
+        border-bottom: 1px solid #1f2937;  
+    }  
+
+    .nav-brand { font-size: 24px; color: white; text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }  
+
+    .btn-status {  
+        background-color: #374151;  
+        color: #fbbf24;  
+        padding: 8px 20px;  
+        border-radius: 50px;  
+        text-decoration: none;  
+        font-weight: bold;  
+        font-size: 12px;  
+        border: 1px solid #fbbf24;  
+    }  
+
+    .hero {  
+        text-align: center;  
+        padding: 60px 20px;  
+        position: relative;  
+        overflow: hidden;  
+    }  
+
+    .glow-bg {  
+        position: absolute;  
+        top: 50%;  
+        left: 50%;  
+        transform: translate(-50%, -50%);  
+        width: 300px;  
+        height: 300px;  
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(0,0,0,0) 70%);  
+        z-index: 0;  
+        pointer-events: none;  
+    }  
+
+    .hero h1 { font-size: 48px; line-height: 1.1; margin-bottom: 16px; position: relative; z-index: 1; }  
+    .hero p { font-size: 14px; color: #d1d5db; margin-bottom: 30px; position: relative; z-index: 1; padding: 0 10px; }  
+
+    .tag-king {  
+        display: inline-block;  
+        background: rgba(251, 191, 36, 0.1);  
+        border: 1px solid #fbbf24;  
+        color: #fbbf24;  
+        padding: 5px 15px;  
+        border-radius: 20px;  
+        font-size: 12px;  
+        font-weight: bold;  
+        margin-bottom: 20px;  
+    }  
+
+    .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; position: relative; z-index: 2; }  
+    .btn-social {  
+        padding: 16px;  
+        border-radius: 12px;  
+        font-weight: bold;  
+        text-align: center;  
+        text-decoration: none;  
+        color: white;  
+        font-size: 14px;  
+        display: flex;  
+        align-items: center;  
+        justify-content: center;  
+        gap: 10px;  
+        transition: transform 0.2s;  
+    }  
+    .btn-social:active { transform: scale(0.98); }  
+      
+    /* TOMBOL BARU UNTUK PUMP.FUN */  
+    .btn-pump {   
+        background: linear-gradient(90deg, #10b981, #059669);   
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);   
+        border: 1px solid #34d399;  
+        font-size: 16px; /* Lebih besar sedikit biar menonjol */  
+        text-transform: uppercase;  
+    }  
+
+    /* TOMBOL BARU UNTUK PHANTOM */
+    .btn-phantom {
+        background: linear-gradient(90deg, #AB9FF2, #8A7CD8); /* Warna khas Phantom */
+        box-shadow: 0 4px 15px rgba(171, 159, 242, 0.3);
+        border: 1px solid #AB9FF2;
+        color: #fff; /* Teks putih agar kontras */
+    }
+      
+    .btn-tele { background-color: #5865F2; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); }  
+    .btn-x { background-color: #000; border: 1px solid #374151; }  
+
+    .marquee-wrap {  
+        background: #fbbf24;  
+        color: black;  
+        padding: 12px 0;  
+        overflow: hidden;  
+        border-top: 4px solid black;  
+        border-bottom: 4px solid black;  
+        transform: rotate(-2deg);  
+        margin: 30px -10px 40px;  
+        position: relative;  
+        z-index: 5;  
+    }  
+    .marquee-content {  
+        white-space: nowrap;  
+        display: inline-block;  
+        animation: marquee 10s linear infinite;  
+        font-weight: bold;  
+        font-size: 20px;  
+    }  
+
+    .section { padding: 40px 20px; }  
+    .section-title { font-size: 36px; text-align: center; margin-bottom: 30px; text-shadow: 0 0 20px rgba(255,255,255,0.2); }  
+
+    .token-card {  
+        display: flex;  
+        align-items: center;  
+        gap: 15px;  
+        padding: 20px;  
+        margin-bottom: 15px;  
+        border-left: 5px solid;  
+    }  
+    .token-icon { font-size: 28px; }  
+    .token-label { font-size: 12px; color: #9ca3af; font-weight: bold; letter-spacing: 1px; }  
+    .token-value { font-size: 20px; font-weight: bold; }  
+
+    .roadmap-container {  
+        max-width: 380px;  
+        margin: 0 auto;  
+        padding-left: 20px;  
+        position: relative;  
+    }  
+    .roadmap-line {  
+        position: absolute;  
+        left: 39px;  
+        top: 20px;  
+        bottom: 20px;  
+        width: 4px;  
+        background: linear-gradient(to bottom, #fbbf24, #a855f7, #22c55e, #3b82f6, #ef4444);  
+        border-radius: 10px;  
+        z-index: 0;  
+    }  
+    .roadmap-item {  
+        display: flex;  
+        align-items: flex-start;  
+        margin-bottom: 40px;  
+        position: relative;  
+        z-index: 1;  
+    }  
+    .phase-circle {  
+        width: 42px;  
+        height: 42px;  
+        border-radius: 50%;  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        font-weight: bold;  
+        border: 4px solid #050505;  
+        flex-shrink: 0;  
+        font-family: 'Luckiest Guy', cursive;  
+        color: black;  
+    }  
+    .phase-box {  
+        margin-left: 20px;  
+        flex: 1;  
+        padding: 16px;  
+        border-top: 3px solid;  
+        background: rgba(30,30,40, 0.6);  
+    }  
+    .phase-title { font-size: 18px; margin-bottom: 8px; }  
+    .phase-list { list-style: none; padding: 0; }  
+    .phase-list li {  
+        font-size: 12px;  
+        color: #d1d5db;  
+        margin-bottom: 4px;  
+        display: flex;  
+        align-items: center;  
+    }  
+    .phase-list li::before {  
+        content: "•";  
+        color: #6b7280;  
+        margin-right: 8px;  
+    }  
+
+    footer {  
+        text-align: center;  
+        padding: 40px 20px;  
+        border-top: 1px solid #1f2937;  
+        background: #000;  
+    }  
+
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }  
+</style>
+
+</head>  
+<body>  <div class="mobile-container">  <nav class="navbar">  
+    <div class="nav-brand meme-font">$BKCO</div>  
+    <a href="#" class="btn-status">COMING SOON</a>  
+</nav>  
+
+<section class="hero">  
+    <div class="glow-bg"></div>  
+    <div class="tag-king">👑 KING OF SOLANA</div>  
+    <h1>THE KING <br> <span class="text-gradient">IS COMING</span></h1>  
+    <p>  
+        Slow steady wins the race. We don't chase pumps, we build empires. Join the community before launch! 🚀  
+    </p>  
+
+    <div class="btn-group">  
+        <a href="http://pump.fun" target="_blank" class="btn-social btn-pump">  
+            <span>💊</span> BUY ON PUMP.FUN  
+        </a>  
+
+        <a href="https://phantom.com" target="_blank" class="btn-social btn-phantom">
+            <span>👻</span> BUY ON PHANTOM
+        </a>
+
+        <a href="https://t.me/Bkcobuluskingcoin" target="_blank" class="btn-social btn-tele">  
+            <span>✈️</span> JOIN TELEGRAM  
+        </a>  
+        <a href="https://x.com/BkcoBulus" target="_blank" class="btn-social btn-x">  
+            <span>✖️</span> FOLLOW TWITTER  
+        </a>  
+    </div>  
+      
+    <p style="font-size: 10px; color: #6b7280; margin-top: 10px;">  
+        *Contract Address will be released at launch.  
+    </p>  
+</section>  
+
+<section class="section">  
+    <h2 class="section-title meme-font">PHILOSOPHY</h2>  
+    <div class="glass-panel" style="padding: 25px; text-align: center; border-color: #fbbf24;">  
+        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; margin-bottom: 15px;">  
+            <span class="text-yellow" style="font-weight: bold; font-size: 18px;">Bulus King Coin ($BKCO)</span> is a memecoin inspired by the bulus  
+            philosophy: <span class="text-gradient" style="font-weight: bold;">slow, steady, don't panic, and always arrive at the finish line.</span>  
+        </p>  
+        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; margin-bottom: 15px;">  
+            In a crypto world full of FOMO, chaos, and instant gratification, BKCO stands as a symbol of "slow but sure." BKCO isn't just a token - it's a movement. A movement for those who believe that those who relax are more consistent, those who don't panic go further, and those who move slowly often become kings in the end.  
+        </p>  
+        <p style="font-size: 14px; color: #d1d5db; line-height: 1.8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">  
+            With a solid community, fun vibe, and unique identity, Bulus King Coin brings a new energy to the memecoin world: <span class="text-yellow">slow steady, and accelerating at the right time.</span>   
+            <br><br>  
+            <span class="meme-font" style="font-size: 18px;">Bulus first . King later . BKCO forever.</span>  
+        </p>  
+    </div>  
+</section>  
+
+<div class="marquee-wrap">  
+    <div class="marquee-content meme-font">  
+        SLOW & STEADY WIN THE RACE • LAUNCHING SOON • NO RUG PULL •   
+        SLOW & STEADY WIN THE RACE • LAUNCHING SOON • NO RUG PULL •  
+    </div>  
+</div>  
+
+<section class="section" style="background: linear-gradient(to bottom, #050505, #1a0b2e);">  
+    <h2 class="section-title meme-font">TOKENOMICS</h2>  
+    <div class="token-card glass-panel" style="border-color: #c084fc;">  
+        <div class="token-icon">💰</div>  
+        <div>  
+            <p class="token-label">TOTAL SUPPLY</p>  
+            <p class="token-value meme-font text-purple">1,000,000,000</p>  
+        </div>  
+    </div>  
+    <div class="token-card glass-panel" style="border-color: #60a5fa;">  
+        <div class="token-icon">⚡</div>  
+        <div>  
+            <p class="token-label">NETWORK</p>  
+            <p class="token-value meme-font text-blue">SOLANA (SOL)</p>  
+        </div>  
+    </div>  
+    <div class="token-card glass-panel" style="border-color: #4ade80;">  
+        <div class="token-icon">🔥</div>  
+        <div>  
+            <p class="token-label">LIQUIDITY</p>  
+            <p class="token-value meme-font text-green">BURNT FOREVER</p>  
+        </div>  
+    </div>  
+</section>  
+
+<section class="section" style="background: rgba(0,0,0,0.5);">  
+    <h2 class="section-title meme-font">ROADMAP</h2>  
+    <div class="roadmap-container">  
+        <div class="roadmap-line"></div>  
+
+        <div class="roadmap-item">  
+            <div class="phase-circle" style="background: #fbbf24; box-shadow: 0 0 15px #fbbf24;">1</div>  
+            <div class="phase-box glass-panel" style="border-color: #fbbf24;">  
+                <h3 class="phase-title meme-font text-yellow">PHASE 1</h3>  
+                <ul class="phase-list">  
+                    <li>Concept & Branding</li>  
+                    <li>Token Deploy (SOL)</li>  
+                    <li>Launch Pump.fun</li>  
+                    <li>Website ,telegram & X Live</li>  
+                </ul>  
+            </div>  
+        </div>  
+
+        <div class="roadmap-item">  
+            <div class="phase-circle" style="background: #c084fc; box-shadow: 0 0 15px #c084fc; color:white;">2</div>  
+            <div class="phase-box glass-panel" style="border-color: #c084fc;">  
+                <h3 class="phase-title meme-font text-purple">PHASE 2</h3>  
+                <ul class="phase-list">  
+                    <li>Community Growth</li>  
+                    <li>1K-5K Holders</li>  
+                    <li>DEX Migration</li>  
+                    <li>Meme Contests</li>  
+                </ul>  
+            </div>  
+        </div>  
+
+        <div class="roadmap-item">  
+            <div class="phase-circle" style="background: #4ade80; box-shadow: 0 0 15px #4ade80;">3</div>  
+            <div class="phase-box glass-panel" style="border-color: #4ade80;">  
+                <h3 class="phase-title meme-font text-green">PHASE 3</h3>  
+                <ul class="phase-list">  
+                    <li>10K+ Holders</li>  
+                    <li>CG & CMC Apply</li>  
+                    <li>Influencer Collabs</li>  
+                    <li>Trending on X</li>  
+                </ul>  
+            </div>  
+        </div>  
+
+        <div class="roadmap-item">  
+            <div class="phase-circle" style="background: #60a5fa; box-shadow: 0 0 15px #60a5fa; color:white;">4</div>  
+            <div class="phase-box glass-panel" style="border-color: #60a5fa;">  
+                <h3 class="phase-title meme-font text-blue">PHASE 4</h3>  
+                <ul class="phase-list">  
+                    <li>50K - 100K+ Holders</li>  
+                    <li>NFT/Game Utility</li>  
+                    <li>potential CEX Listing</li>  
+                    <li>Partnerships</li>  
+                </ul>  
+            </div>  
+        </div>  
+
+        <div class="roadmap-item">  
+            <div class="phase-circle" style="background: #f87171; box-shadow: 0 0 15px #f87171; color:white;">5</div>  
+            <div class="phase-box glass-panel" style="border-color: #f87171;">  
+                <h3 class="phase-title meme-font text-red">PHASE 5</h3>  
+                <ul class="phase-list">  
+                    <li>Ecosystem launch</li>  
+                    <li>Major events</li>  
+                    <li>Governance DAO</li>  
+                    <li>Sustainability</li>  
+                </ul>  
+            </div>  
+        </div>  
+    </div>  
+</section>  
+
+<footer>  
+    <p class="text-gray" style="font-size: 12px; margin-bottom:10px;">  
+        $BKCO is a meme coin for entertainment purposes. Crypto is risky. DYOR.  
+    </p>  
+    <p style="font-size: 10px; color: #4b5563;">© 2026 Bulus King Project</p>  
+</footer>
+
+</div>  
+</body>  
+</html>
